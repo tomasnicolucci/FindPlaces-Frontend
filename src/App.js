@@ -1,16 +1,18 @@
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
+import Home from './Pages/Home/Home';
+import Places from './Pages/Places/Places';
+import Details from './Pages/Details/Details';
 
-function App() {
+export default function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Home
-        </p>
-        
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home></Home>}></Route>
+        <Route exact path="/Places" element={<Places></Places>}></Route>
+        <Route exact path="/place/:id" element={<Details></Details>}></Route>
+      </Routes>  
+    </Router>  
   );
 }
-
-export default App;
