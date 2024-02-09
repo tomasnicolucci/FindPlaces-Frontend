@@ -10,3 +10,16 @@ export const getPlaces = (state) => {
         console.log(error);
     })
 }
+
+export const getPlaceById = (id) => {
+    return fetch(`http://localhost:3004/places/${id}`)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
