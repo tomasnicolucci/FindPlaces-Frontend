@@ -7,7 +7,7 @@ const Navbar = () => {
                 <h2 style={{color: "white", marginLeft:"20px"}}>Find Places</h2>
             </Link>
             <Link to="/Places">
-                <h2>Places</h2>
+                <h2>Lugares</h2>
             </Link>
         </nav>
     );
