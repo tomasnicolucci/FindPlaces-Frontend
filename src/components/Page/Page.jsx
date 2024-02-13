@@ -1,3 +1,4 @@
+import './Page.css'
 import Navbar from "../Navbar/Navbar";
 
 const Page = ({ children }) => {
