@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+
 const Navbar = () => {
     return(
         <nav className='navbar navbar-dark bg-dark'>
@@ -8,6 +9,9 @@ const Navbar = () => {
             </Link>
             <Link to="/Places">
                 <h2>Lugares</h2>
+            </Link>
+            <Link to="/login">
+                <h2>Login</h2>
             </Link>
         </nav>
     );
