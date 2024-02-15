@@ -16,16 +16,18 @@ const Places = () => {
       <Link to="/Places/new">
         <button className="btn btn-outline-primary">Agregar lugar</button>
       </Link>
-      <div>
+      <div className='row'>
         {places !== null ? (
           places.map(p => (
-            <div className="card" style={{width: "18rem"}}>
-              <div className="card-body">
-                <h5 className="card-title">{p.name}</h5>
-                <p className="card-text">{p.description}</p>
-                <Link to={`/place/${p._id}`}>
-                  <button className="btn btn-primary">Ver mas</button>
-                </Link>
+            <div key={p._id} className='col-md-4 mb-4'>
+              <div className="card" style={{width: "20rem"}}>
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-text">{p.description}</p>
+                  <Link to={`/place/${p._id}`}>
+                    <button className="btn btn-primary">Ver mas</button>
+                  </Link>
+                </div>
               </div>
             </div>
           ))
