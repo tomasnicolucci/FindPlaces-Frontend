@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Page from '../../components/Page/Page.jsx'
 import { postPlace } from '../../Services/places.js'
 
-const PlaceForm = ({place, setPlace}) => {
-  let {name, description} = place;
+const PlaceForm = () => {
+  const [place, setPlace] = useState({name: '', description:''});
   
   const handleChange = e => {
     setPlace({
@@ -23,8 +23,8 @@ const PlaceForm = ({place, setPlace}) => {
       console.log(error);
     }
     setPlace({
-      name: 'a',
-      description: 'a'
+      name: '',
+      description: ''
     })
   }
 
@@ -34,12 +34,12 @@ const PlaceForm = ({place, setPlace}) => {
       <div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="placeName">Nombre</label>
-            <input value={name} onChange={handleChange} type="text" className="form-control" id="placeName" placeholder="Nombre" />
+            <label htmlFor="name">Nombre</label>
+            <input value={place.name} onChange={handleChange} name="name" type="text" className="form-control" id="name" placeholder="Nombre" />
           </div>
           <div className="form-group">
-            <label htmlFor="placeDescription">Descripcion</label>
-            <input value={description} onChange={handleChange} type="text" className="form-control" id="placeDescription" placeholder="Descripcion" />
+            <label htmlFor="description">Descripcion</label>
+            <input value={place.description} onChange={handleChange} name="description" type="text" className="form-control" id="description" placeholder="Descripcion" />
           </div>
           <button type="submit" className="btn btn-primary">Guardar</button>
         </form>
