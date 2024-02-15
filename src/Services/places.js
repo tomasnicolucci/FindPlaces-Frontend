@@ -23,3 +23,13 @@ export const getPlaceById = (id) => {
         console.log(error);
     })
 }
+
+export const postPlace = (req) => {
+    return fetch('http://localhost:3004/places', req)
+    .then(response => {
+        return response.json();
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
