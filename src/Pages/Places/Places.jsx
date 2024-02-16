@@ -16,7 +16,7 @@ const Places = () => {
       <Link to="/Places/new">
         <button className="btn btn-outline-primary">Agregar lugar</button>
       </Link>
-      <div className='row'>
+      <div className='row' style={{marginTop: '20px', marginLeft: '20px'}}>
         {places !== null ? (
           places.map(p => (
             <div key={p._id} className='col-md-4 mb-4'>
