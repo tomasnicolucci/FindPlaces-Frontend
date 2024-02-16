@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { getPlaceById } from '../../Services/places.js'
+import React from 'react'
 import Page from '../../components/Page/Page.jsx'
+import PlaceDetail from '../../components/PlaceDetail/PlaceDetail.jsx'
 
 const Details = () => {
-  const [place, setPlace] = useState(null);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    getPlaceById(id)
-    .then(placeData => {
-      setPlace(placeData);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }, [id]);
+  
   return (
     <Page>
-      <div>Details</div>
-      {place ? (
-        <div>
-          {place.name}
-        </div>
-      ) : (
-        <h2>Cargando...</h2>
-      )}
+      <div className="contariner-fluid" style={{marginTop: '10px', marginLeft:'10px'}}>
+        <PlaceDetail />
+      </div>
     </Page>
   )
 }
