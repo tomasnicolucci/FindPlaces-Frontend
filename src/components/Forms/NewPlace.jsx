@@ -1,35 +1,32 @@
 import React, { useState } from 'react'
-import Page from '../../components/Page/Page.jsx'
 import { postPlace } from '../../Services/places.js'
-
-const PlaceForm = () => {
-  const [place, setPlace] = useState({name: '', description:''});
+const NewPlace = () => {
+    const [place, setPlace] = useState({name: '', description:''});
   
-  const handleChange = e => {
-    setPlace({
-      ...place, [e.target.name]: e.target.value
-    });
-  }
-
-  const handleSubmit = async () => {
-    const request = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(place)
+    const handleChange = e => {
+      setPlace({
+        ...place, [e.target.name]: e.target.value
+      });
     }
-    try{
-      await postPlace(request)
-    }catch(error){
-      console.log(error);
+  
+    const handleSubmit = async () => {
+      const request = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(place)
+      }
+      try{
+        await postPlace(request)
+      }catch(error){
+        console.log(error);
+      }
+      setPlace({
+        name: '',
+        description: ''
+      })
     }
-    setPlace({
-      name: '',
-      description: ''
-    })
-  }
-
   return (
-    <Page>
+    <>
       <h1>Agregar nuevo lugar</h1>
       <div>
         <form onSubmit={handleSubmit}>
@@ -44,8 +41,8 @@ const PlaceForm = () => {
           <button type="submit" className="btn btn-primary">Guardar</button>
         </form>
       </div>
-    </Page>
+    </>
   )
 }
 
-export default PlaceForm
+export default NewPlace
