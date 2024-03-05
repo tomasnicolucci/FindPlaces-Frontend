@@ -33,3 +33,13 @@ export const postPlace = (req) => {
         console.log(error);
     })
 }
+
+export const deletePlace = (id, req) => {
+    return fetch('http://localhost:3004/places/' + id, req)
+    .then(response => {
+        return response.json();
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}

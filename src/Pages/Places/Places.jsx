@@ -1,14 +1,53 @@
 import React, { useEffect, useState} from 'react'
-import { getPlaces } from '../../Services/places.js'
+import { getPlaces, deletePlace } from '../../Services/places.js'
+import { addFavorite, addVisited } from '../../Services/users.js'
 import Page from '../../components/Page/Page.jsx'
 import { Link } from 'react-router-dom'
 
 const Places = () => {
-  
+  const [update, setUpdate] = useState(false)
   const [places, setPlaces] = useState(null)
+  
   useEffect( () => {
-    getPlaces(setPlaces)
-  }, [])
+    getPlaces(setPlaces);
+    setUpdate(false);
+  }, [update])
+
+  const handleDelete = async (id) => {
+    const request = {
+      method: 'DELETE'
+    }
+    try{
+      await deletePlace(id, request);
+      setUpdate(true);
+    } catch(error){
+      console.log(error);
+    }
+  }
+
+  const handleFavorite = async (id) => {
+    const request = {
+      method: 'POST'
+    }
+    try{
+      await addFavorite(id, request);
+      setUpdate(true);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  const handleVisited = async (id) => {
+    const request = {
+      method: 'POST'
+    }
+    try{
+      await addVisited(id, request);
+      setUpdate(true);
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   return (
     <Page>
@@ -24,9 +63,14 @@ const Places = () => {
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
                   <p className="card-text">{p.description}</p>
+                  <input onClick={() => handleFavorite(p._id)} className="form-check-input" type="checkbox" value="" id="checkFavorite"/>
+                  <label className="form-check-label" for="checkFavorite">Favorito</label>
+                  <input onClick={() => handleVisited(p._id)} className="form-check-input" type="checkbox" value="" id="checkVisited"/>
+                  <label className="form-check-label" for="checkVisited">Visitado</label> <br/>
                   <Link to={`/place/${p._id}`}>
                     <button className="btn btn-primary">Ver mas</button>
                   </Link>
+                  <button onClick={() => handleDelete(p._id)} className="btn btn-danger">Eliminar</button>
                 </div>
               </div>
             </div>
