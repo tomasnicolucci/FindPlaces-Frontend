@@ -26,8 +26,11 @@ const Places = () => {
   }
 
   const handleFavorite = async (id) => {
+    const storedToken = localStorage.getItem('token');
     const request = {
-      method: 'POST'
+      method: 'POST',
+      headers: {'Content-Type': 'application/json',
+      'Authorization': `Bearer ${storedToken}`}
     }
     try{
       await addFavorite(id, request);
@@ -38,8 +41,11 @@ const Places = () => {
   }
 
   const handleVisited = async (id) => {
+    const storedToken = localStorage.getItem('token');
     const request = {
-      method: 'POST'
+      method: 'POST',
+      headers: {'Content-Type': 'application/json',
+      'Authorization': `Bearer ${storedToken}`}
     }
     try{
       await addVisited(id, request);

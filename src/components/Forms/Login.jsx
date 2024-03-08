@@ -14,16 +14,15 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const request = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(user)
-    }
-    console.log(JSON.stringify(user));
     try{
+      const request = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(user)
+      }
       const response = await loginUser(request)
       setToken(response.token);
-      console.log(token);
+      localStorage.setItem('token', response.token);
     }catch(error){
       console.log(error);
     }
