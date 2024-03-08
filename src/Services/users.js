@@ -8,15 +8,14 @@ export const postUser = (req) => {
     })
 }
 
-export const loginUser = async (req) => {
-    try {
-        const response = await fetch('http://localhost:3004/users/login', req);
-        const data = await response.json();
-        console.log(data);
-        return data;
-    } catch (error) {
+export const loginUser = (req) => {
+    return fetch('http://localhost:3004/users/login', req)
+    .then(response => {
+        return response.json();
+    })
+    .catch(error => {
         console.log(error);
-    }
+    })
 }
 
 export const addFavorite = (id, req) => {
