@@ -1,18 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { loginUser } from '../../Services/users.js'
 
 const Login = () => {
+
+  const [user, setUser] = useState({email:'', password:''});
+  const [token, setToken] = useState('');
+
+  const handleChange = e => {
+    setUser({
+      ...user, [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const request = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(user)
+    }
+    console.log(JSON.stringify(user));
+    try{
+      const response = await loginUser(request)
+      setToken(response.token);
+      console.log(token);
+    }catch(error){
+      console.log(error);
+    }
+    setUser({
+      email: '',
+      password: ''
+    });
+  }
+
   return (
-    <form>
-        <div className="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
-        </div>
-        <div className="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Contraseña" />
-        </div>
-        <button type="submit" className="btn btn-primary">Ingresar</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+          <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input value={user.email} onChange={handleChange} name="email" type="text" className="form-control" id="email" placeholder="Email" />
+          </div>
+          <div className="form-group">
+              <label htmlFor="password">Contraseña</label>
+              <input value={user.password} onChange={handleChange} name="password" type="password" className="form-control" id="password" placeholder="Contraseña" />
+          </div>
+          <button type="submit" className="btn btn-primary">Ingresar</button>
+      </form>
+    </div>
   )
 }
 
