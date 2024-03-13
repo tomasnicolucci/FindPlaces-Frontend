@@ -19,7 +19,7 @@ export const loginUser = (req) => {
 }
 
 export const addFavorite = (id, req) => {
-    return fetch('http://localhost:3004/users/addFavorite/' + id, req)
+    return fetch('http://localhost:3004/users/addFavorite/' + id, req) //cambiar url
     .then(response => {
         return response.json();
     })
@@ -29,9 +29,22 @@ export const addFavorite = (id, req) => {
 }
 
 export const addVisited = (id, req) => {
-    return fetch('http://localhost:3004/users/addVisited/' + id, req)
+    return fetch('http://localhost:3004/users/addVisited/' + id, req) //cambiar url
     .then(response => {
         return response.json();
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+export const getAllFavorites = (state, req) => {
+    return fetch('http://localhost:3004/users/favs/all', req)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        return state(data);
     })
     .catch(error => {
         console.log(error);

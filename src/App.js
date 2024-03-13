@@ -7,19 +7,21 @@ import Details from './Pages/Details/Details';
 import PlaceForm from './Pages/Places/NewPlace';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
+import Favorites from './Pages/Places/Favorites';
 
 export default function App(){
 
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home></Home>}></Route>
-        <Route exact path="/Places" element={<Places></Places>}></Route>
-        <Route exact path="/place/:id" element={<Details></Details>}></Route>
-        <Route exact path="/Places/new" element={<PlaceForm></PlaceForm>}></Route>
-        <Route exact path="/login" element={<Login></Login>}></Route>
-        <Route exact path="/users/new" element={<Register></Register>}></Route>
-      </Routes>  
+        <Route exact path="/" element={<Home /> } />
+        <Route exact path="/Places" element={<Places />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/users/new" element={<Register />} />
+        <Route exact path="/place/:id" element={<Details />} />
+        <Route exact path="/Places/new" element={<PlaceForm />} />
+        <Route exact path="/users/favorites" element={<Favorites />} />
+      </Routes>
     </Router>  
   );
 }
