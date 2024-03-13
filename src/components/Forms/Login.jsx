@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { loginUser } from '../../Services/users.js'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
   const [user, setUser] = useState({email:'', password:''});
-  const [token, setToken] = useState('');
+  const navigate = useNavigate();
+  //const [token, setToken] = useState('');
 
   const handleChange = e => {
     setUser({
@@ -21,8 +23,9 @@ const Login = () => {
         body: JSON.stringify(user)
       }
       const response = await loginUser(request)
-      setToken(response.token);
+      //setToken(response.token);
       localStorage.setItem('token', response.token);
+      navigate('/');
     }catch(error){
       console.log(error);
     }
