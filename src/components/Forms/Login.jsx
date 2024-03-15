@@ -26,6 +26,7 @@ const Login = () => {
       //setToken(response.token);
       localStorage.setItem('token', response.token);
       navigate('/');
+      window.location.reload();
     }catch(error){
       console.log(error);
     }

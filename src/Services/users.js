@@ -1,5 +1,7 @@
+const URL_USERS = 'http://localhost:3004/users';
+
 export const postUser = (req) => {
-    return fetch('http://localhost:3004/users', req)
+    return fetch(URL_USERS, req)
     .then(response => {
         return response.json();
     })
@@ -9,7 +11,7 @@ export const postUser = (req) => {
 }
 
 export const loginUser = (req) => {
-    return fetch('http://localhost:3004/users/login', req)
+    return fetch(URL_USERS + '/login', req)
     .then(response => {
         return response.json();
     })
@@ -19,7 +21,7 @@ export const loginUser = (req) => {
 }
 
 export const addFavorite = (id, req) => {
-    return fetch('http://localhost:3004/users/addFavorite/' + id, req) //cambiar url
+    return fetch(URL_USERS + '/addFavorite/' + id, req) //cambiar url
     .then(response => {
         return response.json();
     })
@@ -29,7 +31,7 @@ export const addFavorite = (id, req) => {
 }
 
 export const addVisited = (id, req) => {
-    return fetch('http://localhost:3004/users/addVisited/' + id, req) //cambiar url
+    return fetch(URL_USERS + '/addVisited/' + id, req) //cambiar url
     .then(response => {
         return response.json();
     })
@@ -39,7 +41,7 @@ export const addVisited = (id, req) => {
 }
 
 export const getAllFavorites = (state, req) => {
-    return fetch('http://localhost:3004/users/favs/all', req)
+    return fetch(URL_USERS + '/favs/all', req)
     .then(response => {
         return response.json();
     })
