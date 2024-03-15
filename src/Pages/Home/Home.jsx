@@ -6,7 +6,7 @@ const Home = () => {
     <Page>
       <div>Home</div>
       <Link to="/Places">
-        <a className='btn btn-primary'>Lugares</a>
+        <button className='btn btn-primary'>Lugares</button>
       </Link>
     </Page>
   )

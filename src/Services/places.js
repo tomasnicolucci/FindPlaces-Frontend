@@ -1,5 +1,7 @@
+const URL_PLACES = 'http://localhost:3004/places';
+
 export const getPlaces = (state) => {
-    return fetch('http://localhost:3004/places')
+    return fetch(URL_PLACES)
     .then(response => {
         return response.json();
     })
@@ -12,7 +14,7 @@ export const getPlaces = (state) => {
 }
 
 export const getPlaceById = (id) => {
-    return fetch(`http://localhost:3004/places/${id}`)
+    return fetch(URL_PLACES + `/${id}`)
     .then(response => {
         return response.json();
     })
@@ -25,7 +27,7 @@ export const getPlaceById = (id) => {
 }
 
 export const postPlace = (req) => {
-    return fetch('http://localhost:3004/places', req)
+    return fetch(URL_PLACES, req)
     .then(response => {
         return response.json();
     })
@@ -35,7 +37,7 @@ export const postPlace = (req) => {
 }
 
 export const deletePlace = (id, req) => {
-    return fetch('http://localhost:3004/places/' + id, req)
+    return fetch(URL_PLACES + '/' + id, req)
     .then(response => {
         return response.json();
     })
