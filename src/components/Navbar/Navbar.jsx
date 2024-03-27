@@ -1,4 +1,5 @@
 import React from 'react'
+import './Navbar.css'
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
@@ -7,10 +8,10 @@ const Navbar = () => {
             <Link to ="/">
                 <h2 style={{color: "white", marginLeft:"20px"}}>Find Places</h2>
             </Link>
-            <Link to="/Places">
+            <Link to="/Places" className="icono">
                 <h2>Lugares</h2>
             </Link>
-            <Link to="/login">
+            <Link to="/login" className="icono">
                 <h2>Login</h2>
             </Link>
             <Link to="/users/favorites">
