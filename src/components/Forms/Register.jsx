@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './forms.css'
 import { postUser } from '../../Services/users.js'
 const Register = () => {
 
@@ -30,9 +31,9 @@ const Register = () => {
 
   return (
     <>
-    <h2>Crear cuenta</h2>
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
+          <h1>Crear cuenta</h1>
           <div className="form-group">
             <label htmlFor="name">Nombre</label>
             <input value={user.name} onChange={handleChange} name="name" type="text" className="form-control" id="name" placeholder="Nombre" />
@@ -45,7 +46,7 @@ const Register = () => {
             <label htmlFor="password">Contraseña</label>
             <input value={user.password} onChange={handleChange} name="password" type="password" className="form-control" id="password" placeholder="Contraseña" />
           </div>
-          <button type="submit" className="btn btn-primary">Guardar</button>
+          <button type="submit" className="btn btn-primary form-button">Crear cuenta</button>
         </form>
       </div>
       </>

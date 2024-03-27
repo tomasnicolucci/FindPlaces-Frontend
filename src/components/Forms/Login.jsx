@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import './forms.css'
 import { loginUser } from '../../Services/users.js'
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 const Login = () => {
 
@@ -38,7 +40,10 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
+          <h1>
+            Iniciar sesión
+          </h1>
           <div className="form-group">
               <label htmlFor="email">Email</label>
               <input value={user.email} onChange={handleChange} name="email" type="text" className="form-control" id="email" placeholder="Email" />
@@ -47,7 +52,12 @@ const Login = () => {
               <label htmlFor="password">Contraseña</label>
               <input value={user.password} onChange={handleChange} name="password" type="password" className="form-control" id="password" placeholder="Contraseña" />
           </div>
-          <button type="submit" className="btn btn-primary">Ingresar</button>
+          <button type="submit" className="btn btn-primary form-button">Ingresar</button>
+          <br/>
+          ¿Olvidaste la contraseña? <br/>
+          <Link to="/users/new">
+              <button className='btn btn-success form-button'>Registrarse</button>
+          </Link>
       </form>
     </div>
   )
