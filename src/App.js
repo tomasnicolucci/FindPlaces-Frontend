@@ -8,6 +8,7 @@ import PlaceForm from './Pages/Places/NewPlace';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
 import Favorites from './Pages/Places/Favorites';
+import Visited from './Pages/Places/Visited';
 
 export default function App(){
 
@@ -24,6 +25,7 @@ export default function App(){
         <Route element={<ProtectedRoute isAuthenticated={token} redirectPath={'/login'}/>}>
           <Route exact path="/Places/new" element={<PlaceForm />} />
           <Route exact path="/users/favorites" element={<Favorites />} />
+          <Route exact path="/users/visited" element={<Visited />} />
         </Route>
       </Routes>
     </Router>  
