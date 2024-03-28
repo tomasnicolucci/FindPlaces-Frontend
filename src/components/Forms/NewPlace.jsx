@@ -1,3 +1,4 @@
+import './forms.css'
 import React, { useState } from 'react'
 import { postPlace } from '../../Services/places.js'
 const NewPlace = () => {
@@ -27,9 +28,9 @@ const NewPlace = () => {
     }
   return (
     <>
-      <h1>Agregar nuevo lugar</h1>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
+          <h1>Agregar nuevo lugar</h1>
           <div className="form-group">
             <label htmlFor="name">Nombre</label>
             <input value={place.name} onChange={handleChange} name="name" type="text" className="form-control" id="name" placeholder="Nombre" />
@@ -38,7 +39,7 @@ const NewPlace = () => {
             <label htmlFor="description">Descripcion</label>
             <input value={place.description} onChange={handleChange} name="description" type="text" className="form-control" id="description" placeholder="Descripcion" />
           </div>
-          <button type="submit" className="btn btn-primary">Guardar</button>
+          <button type="submit" className="btn btn-primary form-button">Guardar</button>
         </form>
       </div>
     </>

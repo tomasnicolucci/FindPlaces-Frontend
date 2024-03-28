@@ -52,3 +52,16 @@ export const getAllFavorites = (state, req) => {
         console.log(error);
     })
 }
+
+export const getAllVisited = (state, req) => {
+    return fetch(URL_USERS + '/visited/all', req)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        return state(data);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
