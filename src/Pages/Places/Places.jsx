@@ -61,6 +61,12 @@ const Places = () => {
       <Link to="/Places/new">
         <button className="btn btn-outline-primary">Agregar lugar</button>
       </Link>
+      <Link to="/users/favorites" className="icono">
+        <button className="btn btn-outline-primary">Favoritos</button>
+      </Link>
+      <Link to="/users/visited" className="icono">
+        <button className="btn btn-outline-primary">Visitados</button>
+      </Link>
       <div className='row' style={{marginTop: '20px', marginLeft: '20px'}}>
         {places !== null ? (
           places.map(p => (

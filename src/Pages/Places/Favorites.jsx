@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Page from '../../components/Page/Page'
 import {getAllFavorites} from '../../Services/users.js'
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Favorites = () => {
     const [update, setUpdate] = useState(false)
@@ -19,7 +21,8 @@ const Favorites = () => {
 
     return (
         <Page>
-            <div>Favoritos</div>
+            <h1>Mis lugares favoritos <FontAwesomeIcon icon={faHeart} /></h1>
+            
             <div>{favorites !== null ? (
                 favorites.map(f => (
                     <div>

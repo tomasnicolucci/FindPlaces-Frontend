@@ -46,7 +46,7 @@ const Login = () => {
           </h1>
           <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input value={user.email} onChange={handleChange} name="email" type="text" className="form-control" id="email" placeholder="Email" />
+              <input value={user.email} onChange={handleChange} name="email" type="email" className="form-control" id="email" placeholder="Email" />
           </div>
           <div className="form-group">
               <label htmlFor="password">Contraseña</label>
