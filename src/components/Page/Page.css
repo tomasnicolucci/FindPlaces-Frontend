@@ -1,5 +1,9 @@
+html body{
+    background-color: rgb(248, 250, 220);
+    background-size: cover;
+    height: 100%;
+}
 
-.bodyContainer {
+.main {
     margin: 20px;
-    
 }
