@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Page from '../../components/Page/Page'
 import {getAllVisited} from '../../Services/users.js'
 
@@ -19,15 +21,27 @@ const Visited = () => {
 
     return (
         <Page>
-            <div>Visitados</div>
-            <div>{visited !== null ? (
-                visited.map(v => (
-                    <div>
-                        <p>{v.name}</p>
-                    </div>
-                ))
-            ) : ('No hay lugares visitados')}
-            </div>
+            <h1>Lugares Visitados <FontAwesomeIcon icon={faSquareCheck} /></h1>
+            {visited !== null ? (
+                <table className="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr className='table-success'>
+                            <th>
+                                Nombre
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {visited.map(v => (
+                            <tr>
+                                <td>
+                                    {v.name}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ): ("No hay lugares para mostrar")}
         </Page>
     )
 }

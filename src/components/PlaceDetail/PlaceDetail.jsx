@@ -18,11 +18,14 @@ const Details = () => {
   }, [id]);
   return (
     <>
-      <div>Details</div>
       {place ? (
-        <div>
-          {place.name}
-        </div>
+        <body>
+          <h1>{place.name}</h1>
+          <p>{place.description}</p>
+          <p>{place.direction}</p>
+          <p>{place.dates}</p>
+          <p>Tipo de entrada: {place.ticket}</p>
+        </body>
       ) : (
         <h2>Cargando...</h2>
       )}

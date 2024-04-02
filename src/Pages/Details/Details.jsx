@@ -6,9 +6,7 @@ const Details = () => {
   
   return (
     <Page>
-      <div className="contariner-fluid" style={{marginTop: '10px', marginLeft:'10px'}}>
         <PlaceDetail />
-      </div>
     </Page>
   )
 }

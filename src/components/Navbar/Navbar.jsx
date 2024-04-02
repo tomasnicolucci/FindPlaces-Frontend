@@ -14,12 +14,6 @@ const Navbar = () => {
             <Link to="/login" className="icono">
                 <h3>Login</h3>
             </Link>
-            <Link to="/users/favorites" className="icono">
-                <h3>Favs</h3>
-            </Link>
-            <Link to="/users/visited" className="icono">
-                <h3>Visited</h3>
-            </Link>
         </nav>
     );
 }

@@ -32,7 +32,11 @@ export const postPlace = (req) => {
         return response.json();
     })
     .catch(error => {
-        console.log(error);
+        if(error.response && error.response.status === 400){
+            console.log(error.response.data.errors);
+        }else {
+            console.log(error);
+        }
     })
 }
 
