@@ -1,5 +1,8 @@
+/* .margin{
+  margin-top: 5%;
+} */
+
 .icono{
+    text-decoration: none;
     color: #fff;
-    width: 10px;
-    height: 10px;
   }

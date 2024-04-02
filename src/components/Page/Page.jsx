@@ -3,14 +3,14 @@ import Navbar from "../Navbar/Navbar";
 
 const Page = ({ children }) => {
     return(
-        <>
-        <header>
-            <Navbar />
-        </header>
-        <body className="bodyContainer">
-            {children}
+        <body>
+            <header>
+                <Navbar />
+            </header>
+            <main className='main'>
+                {children}
+            </main>
         </body>
-        </>
     )
 }
 
