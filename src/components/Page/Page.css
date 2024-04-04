@@ -1,6 +1,5 @@
 html body{
-    background-color: rgb(248, 250, 220);
-    background-size: cover;
+    background-image: url("../../../public/images/banner.jpg");
     height: 100%;
 }
 
