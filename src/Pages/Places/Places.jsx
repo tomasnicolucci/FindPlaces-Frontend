@@ -1,18 +1,37 @@
 import React, { useEffect, useState} from 'react'
+import './Places.css';
 import { getPlaces, deletePlace } from '../../Services/places.js'
 import { addFavorite, addVisited } from '../../Services/users.js'
 import Page from '../../components/Page/Page.jsx'
 import { Link } from 'react-router-dom'
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Places = () => {
   const [update, setUpdate] = useState(false)
   const [places, setPlaces] = useState(null)
-  
+  const [isAnimating, setIsAnimating] = useState(false);
+
   useEffect( () => {
     getPlaces(setPlaces);
     setUpdate(false);
   }, [update])
 
+  const favOnClick = (id) =>{
+    handleButtonClick()
+    if(false){
+      //removeFavorite(id)
+    }else{
+      addFavorite(id)
+    }    
+  }
+  const handleButtonClick = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 1000);
+  };
   const handleDelete = async (id) => {
     const request = {
       method: 'DELETE'
@@ -76,8 +95,10 @@ const Places = () => {
                   <h5 className="card-title">{p.name}</h5>
                   <p className="card-text">{p.description}</p>
                   <input onClick={() => handleFavorite(p._id)} className="form-check-input" type="checkbox" value="" id="checkFavorite"/>
+                  <FontAwesomeIcon className="btnCorazon" icon={faHeart} onClick={() => favOnClick(p._id)} />
                   <label className="form-check-label" for="checkFavorite">Favorito</label>
                   <input onClick={() => handleVisited(p._id)} className="form-check-input" type="checkbox" value="" id="checkVisited"/>
+                  <FontAwesomeIcon icon={faSquareCheck} />
                   <label className="form-check-label" for="checkVisited">Visitado</label> <br/>
                   <Link to={`/place/${p._id}`}>
                     <button className="btn btn-primary">Ver mas</button>

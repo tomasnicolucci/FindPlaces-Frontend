@@ -1,0 +1,17 @@
+.btnCorazon{
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    color: #cccccc;
+    transition: all .1s ease-in-out;
+}
+
+.btnCorazon:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.corazon{
+    background-color: "red" !important;
+    color: red;
+}
