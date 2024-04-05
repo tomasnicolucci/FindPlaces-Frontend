@@ -12,26 +12,48 @@ const Places = () => {
   const [update, setUpdate] = useState(false)
   const [places, setPlaces] = useState(null)
   const [isAnimating, setIsAnimating] = useState(false);
+  const request = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`}
+  }
 
   useEffect( () => {
     getPlaces(setPlaces);
     setUpdate(false);
   }, [update])
 
-  const favOnClick = (id) =>{
-    handleButtonClick()
+  const favOnClick = async (id) =>{
+    handleButtonClick();
     if(false){
       //removeFavorite(id)
     }else{
-      addFavorite(id)
+      try{
+        await addFavorite(id, request);
+        setUpdate(true);
+      }catch(error){
+        console.log(error);
+      }
     }    
   }
+
+  const visitedOnClick = async (id) => {
+    handleButtonClick();
+    try{
+      await addVisited(id, request);
+      setUpdate(true);
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   const handleButtonClick = () => {
     setIsAnimating(true);
     setTimeout(() => {
       setIsAnimating(false);
     }, 1000);
-  };
+  }
+  
   const handleDelete = async (id) => {
     const request = {
       method: 'DELETE'
@@ -44,66 +66,32 @@ const Places = () => {
     }
   }
 
-  const handleFavorite = async (id) => {
-    const storedToken = localStorage.getItem('token');
-    const request = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json',
-      'Authorization': `Bearer ${storedToken}`}
-    }
-    try{
-      await addFavorite(id, request);
-      setUpdate(true);
-    }catch(error){
-      console.log(error);
-    }
-  }
-
-  const handleVisited = async (id) => {
-    const storedToken = localStorage.getItem('token');
-    const request = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json',
-      'Authorization': `Bearer ${storedToken}`}
-    }
-    try{
-      await addVisited(id, request);
-      setUpdate(true);
-    }catch(error){
-      console.log(error);
-    }
-  }
-
   return (
     <Page>
       <h1>Lugares</h1>
       <Link to="/Places/new">
-        <button className="btn btn-outline-primary">Agregar lugar</button>
+        <button className="btn btn-primary btn-custom">Agregar lugar</button>
       </Link>
-      <Link to="/users/favorites" className="icono">
-        <button className="btn btn-outline-primary">Favoritos</button>
+      <Link to="/users/favorites">
+        <button className="btn btn-primary btn-custom">Favoritos</button>
       </Link>
-      <Link to="/users/visited" className="icono">
-        <button className="btn btn-outline-primary">Visitados</button>
+      <Link to="/users/visited">
+        <button className="btn btn-primary btn-custom">Visitados</button>
       </Link>
-      <div className='row' style={{marginTop: '20px', marginLeft: '20px'}}>
+      <div className='row row-custom' style={{marginTop: '20px', marginLeft: '20px'}}>
         {places !== null ? (
           places.map(p => (
             <div key={p._id} className='col-md-4 mb-4'>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
+              <div className="card bg-transparent card-custom">
+                <div className="card-body place">
                   <h5 className="card-title">{p.name}</h5>
+                  <FontAwesomeIcon className="btnAdd col-1" icon={faHeart} onClick={() => favOnClick(p._id)} />
+                  <FontAwesomeIcon className="btnAdd col-2" icon={faSquareCheck} onClick={() => visitedOnClick(p._id)}/>
                   <p className="card-text">{p.description}</p>
-                  <input onClick={() => handleFavorite(p._id)} className="form-check-input" type="checkbox" value="" id="checkFavorite"/>
-                  <FontAwesomeIcon className="btnCorazon" icon={faHeart} onClick={() => favOnClick(p._id)} />
-                  <label className="form-check-label" for="checkFavorite">Favorito</label>
-                  <input onClick={() => handleVisited(p._id)} className="form-check-input" type="checkbox" value="" id="checkVisited"/>
-                  <FontAwesomeIcon icon={faSquareCheck} />
-                  <label className="form-check-label" for="checkVisited">Visitado</label> <br/>
                   <Link to={`/place/${p._id}`}>
                     <button className="btn btn-primary">Ver mas</button>
                   </Link>
-                  <button onClick={() => handleDelete(p._id)} className="btn btn-danger">Eliminar</button>
+                  <button onClick={() => handleDelete(p._id)} className="btn btn-danger btn-custom">Eliminar</button>
                 </div>
               </div>
             </div>
