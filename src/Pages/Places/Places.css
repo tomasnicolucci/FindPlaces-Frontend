@@ -1,4 +1,4 @@
-.btnCorazon{
+.btnAdd{
     width: 18px;
     height: 18px;
     padding: 0;
@@ -6,12 +6,34 @@
     transition: all .1s ease-in-out;
 }
 
-.btnCorazon:hover{
+.btnAdd:hover{
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.btn-custom{
+    margin-left: 5px;
 }
 
 .corazon{
     background-color: "red" !important;
     color: red;
+}
+
+.check{
+    background-color: "green" !important;
+    color: green;
+}
+
+.place{
+    background-color: rgba(255,255,255, 0.4);
+    border-radius: 10px;
+}
+
+.card-custom {
+    width: 25vw;
+}
+
+.row-custom {
+    padding: auto;
 }

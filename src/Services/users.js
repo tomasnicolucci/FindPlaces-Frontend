@@ -21,7 +21,7 @@ export const loginUser = (req) => {
 }
 
 export const addFavorite = (id, req) => {
-    return fetch(URL_USERS + '/addFavorite/' + id, req) //cambiar url
+    return fetch(URL_USERS + '/favs/add/' + id, req)
     .then(response => {
         return response.json();
     })
@@ -31,7 +31,7 @@ export const addFavorite = (id, req) => {
 }
 
 export const addVisited = (id, req) => {
-    return fetch(URL_USERS + '/addVisited/' + id, req) //cambiar url
+    return fetch(URL_USERS + '/visited/all/' + id, req)
     .then(response => {
         return response.json();
     })
