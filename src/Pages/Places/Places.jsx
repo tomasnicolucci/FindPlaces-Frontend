@@ -1,7 +1,8 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import './Places.css';
 import { getPlaces, deletePlace } from '../../Services/places.js'
 import { addFavorite, addVisited } from '../../Services/users.js'
+import { PlacesContext } from '../../Context/PlacesContext.jsx'
 import Page from '../../components/Page/Page.jsx'
 import { Link } from 'react-router-dom'
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +10,8 @@ import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Places = () => {
+  const { places } = useContext(PlacesContext);
   const [update, setUpdate] = useState(false)
-  const [places, setPlaces] = useState(null)
   const [isAnimating, setIsAnimating] = useState(false);
   const request = {
     method: 'POST',
@@ -18,10 +19,10 @@ const Places = () => {
     'Authorization': `Bearer ${localStorage.getItem('token')}`}
   }
 
-  useEffect( () => {
-    getPlaces(setPlaces);
-    setUpdate(false);
-  }, [update])
+  // useEffect( () => {
+  //   getPlaces(setPlaces);
+  //   setUpdate(false);
+  // }, [update])
 
   const favOnClick = async (id) =>{
     handleButtonClick();
