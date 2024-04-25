@@ -19,13 +19,13 @@ const Details = () => {
   return (
     <>
       {place ? (
-        <body>
+        <div>
           <h1>{place.name}</h1>
           <p>{place.description}</p>
-          <p>{place.direction}</p>
+          <p>{place.address}</p>
           <p>{place.dates}</p>
           <p>Tipo de entrada: {place.ticket}</p>
-        </body>
+        </div>
       ) : (
         <h2>Cargando...</h2>
       )}

@@ -12,7 +12,7 @@ const Home = () => {
       <h1>¡Bienvenidos!</h1>
       <Link to="/Places">
         <button className='btn btn-primary'>Lugares</button>
-      </Link>
+      </Link> <br/>
       <Search places={places}/>
     </Page>
   )

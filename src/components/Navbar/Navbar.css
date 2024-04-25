@@ -1,8 +1,12 @@
-/* .margin{
-  margin-top: 5%;
-} */
+.btnHome{
+  text-decoration: none;
+  color: #fff;
+  margin-left: 1rem;
+}
 
 .icono{
   text-decoration: none;
   color: #fff;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
