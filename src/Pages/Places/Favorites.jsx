@@ -15,7 +15,8 @@ const Favorites = () => {
             headers: {'Content-Type': 'application/json',
             'Authorization': `Bearer ${storedToken}`}
         }
-        getAllFavorites(setFavorites, request);
+        const favs = getAllFavorites(request);
+        setFavorites(favs);
         setUpdate(false);
     }, [update])
 
