@@ -19,21 +19,3 @@
     background-color: "red" !important;
     color: red;
 }
-
-.check{
-    background-color: "green" !important;
-    color: rgb(37, 236, 37);
-}
-
-.place{
-    background-color: rgba(255,255,255, 0.6);
-    border-radius: 10px;
-}
-
-.card-custom {
-    width: 25vw;
-}
-
-.row-custom {
-    padding: auto;
-}

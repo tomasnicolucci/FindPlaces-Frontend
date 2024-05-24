@@ -31,7 +31,7 @@ export const addFavorite = (id, req) => {
 }
 
 export const addVisited = (id, req) => {
-    return fetch(URL_USERS + '/visited/all/' + id, req)
+    return fetch(URL_USERS + '/visited/add/' + id, req)
     .then(response => {
         return response.json();
     })
@@ -40,19 +40,28 @@ export const addVisited = (id, req) => {
     })
 }
 
-export const getAllFavorites = (state, req) => {
-    return fetch(URL_USERS + '/favs/all', req)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        return state(data);
-    })
-    .catch(error => {
+// export const getAllFavorites = (state, req) => {
+//     return fetch(URL_USERS + '/favs/all', req)
+//     .then(response => {
+//         return response.json();
+//     })
+//     .then(data => {
+//         return state(data);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     })
+// }
+export const getAllFavorites = async (req) => {
+    try {
+        const response = await fetch(URL_USERS + '/favs/all', req);
+        const data = await response.json();
+        return data;
+    } catch (error) {
         console.log(error);
-    })
+        return [];
+    }
 }
-
 export const getAllVisited = (state, req) => {
     return fetch(URL_USERS + '/visited/all', req)
     .then(response => {
