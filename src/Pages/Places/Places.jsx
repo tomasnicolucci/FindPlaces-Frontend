@@ -1,66 +1,26 @@
 import React, { useContext, useEffect, useState} from 'react'
 import './Places.css';
 import Place from '../../components/Places/Place.jsx'
-import { getPlaces, deletePlace } from '../../Services/places.js'
-import { addFavorite, addVisited, getAllFavorites } from '../../Services/users.js'
+// import { getPlaces, deletePlace } from '../../Services/places.js'
+import { addFavorite, addVisited, getAllFavorites, getAllVisited } from '../../Services/users.js'
 import { PlacesContext } from '../../Context/PlacesContext.jsx'
 import Page from '../../components/Page/Page.jsx'
 import { Link } from 'react-router-dom'
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+// import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Places = () => {
   const { places } = useContext(PlacesContext);
   const [favorites, setFavorites] = useState([]);
-  const [efecto, setEfecto] = useState(false);
+  const [visited, setVisited] = useState([]);
+  // const [efecto, setEfecto] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const request = {
-    method: 'POST',
+    method: 'GET',
     headers: {'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`}
   }
-
-  // useEffect(() => {
-  //   const favs = getAllFavorites();
-  //   setFavorites(favs);
-  // }, [])
-  // useEffect(() => {
-  //   const fetchFavorites = async () => {
-  //     try {
-  //       const favs = await getAllFavorites();
-  //       if (Array.isArray(favs)) {
-  //         setFavorites(favs);
-  //       } else {
-  //         console.error('getAllFavorites did not return an array');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching favorites:', error);
-  //     }
-  //   };
-  
-  //   fetchFavorites();
-  // }, []);
-  // useEffect(() => {
-  //   const fetchFavorites = async () => {
-  //     try {
-  //       const favs = await getAllFavorites();
-  //       console.log('Favoritos devueltos:', favs);  // Añadir este log para depuración
-  //       if (Array.isArray(favs)) {
-  //         setFavorites(favs);
-  //       } else {
-  //         console.error('getAllFavorites no devolvió un array');
-  //         setFavorites([]);  // Asegúrate de que `favorites` sea un array
-  //       }
-  //     } catch (error) {
-  //       console.error('Error al obtener favoritos:', error);
-  //       setFavorites([]);  // Asegúrate de que `favorites` sea un array en caso de error
-  //     }
-  //   };
-  
-  //   fetchFavorites();
-  // }, []);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -68,18 +28,25 @@ const Places = () => {
             const favs = await getAllFavorites(request);
             console.log('Favoritos devueltos:', favs);  // Añadir este log para depuración
             setFavorites(favs);
+            setUpdate(true);
         } catch (error) {
             console.error('Error al obtener favoritos:', error);
             setFavorites([]);  // Asegúrate de que `favorites` sea un array en caso de error
         }
     };
 
+    const fetchVisited = async () => {
+      try{
+        const vstd = await getAllVisited(request);
+        setVisited(vstd)
+      } catch(error){
+        setVisited([]);
+      }
+    };
+
     fetchFavorites();
-}, []);
-  // useEffect( () => {
-  //   getPlaces(setPlaces);
-  //   setUpdate(false);
-  // }, [update])
+    fetchVisited();
+}, [update]);
 
   // const favOnClick = async (id) =>{
   //   handleButtonClick();
@@ -140,9 +107,9 @@ const Places = () => {
         {places !== null ? (
           places.map((p) => {
             const esFavorito = favorites.includes(p._id);
-            const favorito = esFavorito ? true : false;
-            
-            return <Place place={p} favorito={favorito} key={p._id} />;
+            const fav = esFavorito ? true : false;
+            console.log(fav);
+            return <Place place={p} favorito={fav} key={p._id} />;
 
           })
             // <div key={p._id} className='col-md-4 mb-4'>

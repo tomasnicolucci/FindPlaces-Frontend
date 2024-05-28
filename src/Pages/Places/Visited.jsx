@@ -15,8 +15,18 @@ const Visited = () => {
             headers: {'Content-Type': 'application/json',
             'Authorization': `Bearer ${storedToken}`}
         }
-        getAllVisited(setVisited, request);
-        setUpdate(false);
+        // getAllVisited(setVisited, request);
+        // setUpdate(false);
+        const fetchVisited = async () => {
+            try{
+              const vstd = await getAllVisited(request);
+              setVisited(vstd);
+              setUpdate(true);
+            } catch(error){
+              setVisited([]);
+            }
+        };
+        fetchVisited();
     }, [update])
 
     return (
