@@ -7,7 +7,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Place = ({place, favorito}) => {
+const Place = ({place, fav}) => {
     // const {_id, name, description} = props.place;
     const [update, setUpdate] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false);
@@ -111,12 +111,13 @@ const Place = ({place, favorito}) => {
         <div className="card-body">
         <h5 className="card-title">{place.name}</h5>
         <p className="card-text">{place.description}</p>
-        <FontAwesomeIcon className={`${favorito === true ? "btnAdd col-1 corazon" : "btnAdd col-2"}`} icon={faHeart} onClick={() => favOnClick(place._id)} />       
+        <FontAwesomeIcon className={`${fav === true ? "corazon col-1" : "btnAdd col-2"}`} icon={faHeart} onClick={() => favOnClick(place._id)} />       
         <FontAwesomeIcon className="btnAdd col-2" icon={faSquareCheck} onClick={() => visitedOnClick(place._id)}/>      
         <Link to={`/place/${place._id}`}>
             <button className="btn btn-primary">Ver mas</button>
         </Link>
         <button onClick={() => handleDelete(place._id)} className="btn btn-danger">Eliminar</button>
+        <div>{place.favorito}</div>
         </div>
     </div>
     

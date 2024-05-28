@@ -15,9 +15,19 @@ const Favorites = () => {
             headers: {'Content-Type': 'application/json',
             'Authorization': `Bearer ${storedToken}`}
         }
-        const favs = getAllFavorites(request);
-        setFavorites(favs);
-        setUpdate(false);
+        // const favs = getAllFavorites(request);
+        // setFavorites(favs);
+        // setUpdate(false);
+        const fetchFavorites = async () => {
+            try {
+                const favs = await getAllFavorites(request);
+                setFavorites(favs);
+                setUpdate(true);
+            } catch (error) {
+                setFavorites([]);
+            }
+        };  
+        fetchFavorites();
     }, [update])
 
     return (
@@ -28,6 +38,7 @@ const Favorites = () => {
                 favorites.map(f => (
                     <div>
                         <p>{f.name}</p>
+                        {/* <p>{f.description}</p> */}
                     </div>
                 ))
             ) : ('No hay favoritos')}
