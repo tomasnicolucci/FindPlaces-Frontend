@@ -19,3 +19,32 @@
     background-color: "red" !important;
     color: red;
 }
+
+.check{
+    background-color: "green" !important;
+    color: rgb(37, 236, 37);
+}
+
+.place{
+    background-color: rgba(255,255,255, 0.6);
+    border-radius: 10px;
+}
+
+.card-custom {
+    width: 20rem;
+}
+
+.row-custom {
+    padding: auto;
+}
+
+.titleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleContainer .card-title{
+    margin-right: auto;
+    padding-right: 10px;
+}
